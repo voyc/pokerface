@@ -1,11 +1,13 @@
-﻿PokerFaceController = function(owner) {
+﻿PokerFaceController = function(owner, container) {
 	this.owner = owner;
+	this.container = container;
 }
 
 PokerFaceController.prototype = {
 	setup: function() {
 		this.divController = document.createElement( 'div');
-		this.owner.e.appendChild(this.divController);
+		this.divController.id = 'controller';
+		this.container.appendChild(this.divController);
 
 		var table = document.createElement( 'table');
 		this.divController.appendChild(table);
@@ -44,13 +46,13 @@ PokerFaceController.prototype = {
 	},
 
 	layout: function() {
-		var controllerH = this.divController.offsetHeight;
-		var controllerW = this.divController.offsetWidth;
-
-		var canvasH = this.owner.e.offsetHeight;
-		var canvasW = this.owner.e.offsetWidth;
+		//var controllerH = this.divController.offsetHeight;
+		//var controllerW = this.divController.offsetWidth;
+        //
+		//var canvasH = this.owner.offsetHeight;
+		//var canvasW = this.owner.offsetWidth;
 				
-		this.owner.divCanvas.style.height = canvasH-controllerH + 'px';
+		//this.owner.divCanvas.style.height = canvasH-controllerH + 'px';
 	},
 
 	onSlidePleasure: function() {

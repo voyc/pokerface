@@ -1,6 +1,5 @@
-﻿PokerFace = function(container, hasController) {
+﻿PokerFace = function(container) {
 	this.e = container;
-	this.hasController = (typeof hasController !== 'undefined') ? hasController : true;
 	this.debug = false;
 	this.focus = 50;
 	this.pleasure = 50;
@@ -49,18 +48,10 @@ PokerFace.prototype = {
 		this.e.appendChild(this.divCanvas);
 		this.canvasFace = document.createElement( 'canvas');
 		this.divCanvas.appendChild(this.canvasFace);
-
-		if (this.hasController) {
-			this.controller = new PokerFaceController(this);
-			this.controller.setup();
-		}
 	},
 
 	/* private */
 	layout: function() {
-		if (this.hasController) {
-			this.controller.layout();
-		}
 		this.canvasFace.width = this.divCanvas.offsetWidth;
 		this.canvasFace.height = this.divCanvas.offsetHeight;
 	},
