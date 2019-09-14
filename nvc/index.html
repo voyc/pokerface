@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>nvc</title>
+		<style>
+			h1 {
+				font-family:arial;
+				font-size: 1.5em;
+			}
+			h2 {
+				font-family:arial;
+				font-size: 1em;
+			}
+		</style>
+		<script>
+			$ = function(s) {
+				return document.getElementById(s);
+			}
+			loadScript = function(s) {
+				var sel = document.createElement('script');
+				sel.src=s;
+				var hel = document.getElementsByTagName("head")[0];
+				hel.appendChild(sel);
+			}
+			onLoadNvc = function() {
+				var s = '';
+				for (var x in feelingsWhenNeedsAreNotMet) {
+					s += '<option>'+feelingsWhenNeedsAreNotMet[x]+'</option>';
+				}
+				$('feelings1').innerHTML = s;
+				$('feelings2').innerHTML = s;
+
+				s = '';
+				for (var x in feelingsWhenNeedsAreMet) {
+					s += '<option>'+feelingsWhenNeedsAreMet[x]+'</option>';
+				}
+				$('feelings3').innerHTML = s;
+
+				s = '';
+				for (var x in needs) {
+					s += '<option>'+needs[x]+'</option>';
+				}
+				$('needs1').innerHTML = s;
+				$('needs2').innerHTML = s;
+				$('needs3').innerHTML = s;
+			}
+			onload = function() {
+				loadScript('nvc.js', onLoadNvc);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Non-violent Communication (NVC)</h1>
+		<h1>AKA Compassionate Communication</h1>
+
+		<h2>To communicate:</h2>
+		I am feeling <select id="feelings3"></select> because my need for <select id="needs3"></select> is being met.<br/>
+		OR<br/>
+		I am feeling <select id="feelings2"></select> because my need for <select id="needs2"></select> is NOT being met.<br/>
+
+		<h2>To respond to another:</h2>
+		Are you feeling <select id="feelings1"></select> because your need for <select id="needs1"></select> is not being met.
+
+		<br/>
+		<br/>
+		<a href="about.html">About Compassionate Communication</a>
+		<br/>
+		<br/>
+		<a href='../index.html'>Back to face</a>
+	</body>
+</html>
