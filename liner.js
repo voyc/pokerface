@@ -107,15 +107,16 @@ Liner.prototype = {
 		ctx.lineWidth = 2.5;
 		ctx.stroke();
 
-		// draw line
+		// calc line
 		var scale = 100;
 		var grid = scale * 2;
 		var interpolate = radius/scale;
-		ctx.beginPath();
-		ctx.strokeStyle='#0000cc';
 		var x,y,xx,yy;
+		var ax = []
+		var ay = []
+
 		for (var t=0; t<grid; t++) {  // t: 0 to 200
-			x = t-scale;       // x: -100 to +100
+			x = t-scale;          // x: -100 to +100
 
 			//y = c6*(x**6) + c5*(x**5) + c4*(x**4) + c3*(x**3) + c2*(x**2) + c1*(x**1) + c0*(x**0);
 			y = 0;
@@ -123,7 +124,33 @@ Liner.prototype = {
 				term = this.ascalar[i] * (x ** i);
 				y += term;
 			}
+			ax.push(x)
+			ay.push(y)
+		}	
+
+		// choose y scale
+		miny = -10
+		maxy = 10
+		for (var t=0; t<grid; t++) {
+			y = ay[t]
+			if (y < miny) miny = y
+			if (y > maxy) maxy = y
+		}
+		
+
+		// draw line
+		var scale = 100;
+		var grid = scale * 2;
+		var interpolate = radius/scale;
+		ctx.beginPath();
+		ctx.strokeStyle='#0000cc';
+		var x,y,xx,yy;
+
+		for (var t=0; t<grid; t++) {  // t: 0 to 200
 			
+			x = ax[t]
+			y = ay[t]
+
 			xx = centerX + (x * interpolate)    // xx: left to right
 			yy = centerY - (y * interpolate)
 
